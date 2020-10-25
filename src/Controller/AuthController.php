@@ -10,7 +10,7 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
-    use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 
 class AuthController extends AbstractController
 {
@@ -27,8 +27,8 @@ class AuthController extends AbstractController
         $em->persist($user);
         $em->flush();
 
-        $message = (new \Swift_Message('Inscription E-Corp'))
-            ->setFrom('admin@ecorp.com')
+        $message = (new \Swift_Message('registration'))
+            ->setFrom('admin@eshop.com')
             ->setTo($user->getEmail())
             ->setBody(
                 $this->renderView(

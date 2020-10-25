@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Psr\Log\LoggerInterface;
 
 /**
  * @Route("/products")
@@ -55,11 +56,12 @@ class ProductsController extends AbstractController
     /**
      * @Route("/{id}", name="products_show", methods={"GET"})
      */
-    public function show(Products $product): Response
+    public function show(Products $product,LoggerInterface $logger): Response
     {
         $serializer = SerializerBuilder::create()->build();
         $reponse = $serializer->serialize($product, 'json');
         $reponse = json_decode($reponse);
+        $logger->info($reponse);
         return new JsonResponse($reponse);
     }
 

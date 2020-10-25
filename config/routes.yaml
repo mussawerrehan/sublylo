@@ -8,6 +8,11 @@ login_check:
     path:     /login
     methods:  [POST]
 
+login:
+    path:     /login
+    controller: App\Controller\SecurityController::login
+    methods:  [GET]
+
 validation:
     path: /validation
     controller: App\Controller\AuthController::validate
